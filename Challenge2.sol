@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
 contract Challenge is ERC20Burnable, Ownable, Pausable {
-
+ 
   constructor() ERC20Burnable() ERC20("Challenge Extensions", "CH") {
     _mint(msg.sender, 1000);
   }
@@ -21,6 +21,7 @@ contract Challenge is ERC20Burnable, Ownable, Pausable {
   }
 
   function Burn(uint quantity) public {
+    require(paused() != true, "Contract is paused");
     burn(quantity);
   }
 
